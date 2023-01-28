@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="{{type}}" client="{{client}}" method="{{method}}">
+	<name>{{nameUpper}}</name>
+	<author>{{authorName}}</author>
+	<creationDate>{{creationDate}}</creationDate>
+	<copyright>{{copyright}}</copyright>
+	<license>{{licenseLong}}</license>
+	<authorUrl>{{authorUrl}}</authorUrl>
+	<version>{{version}}</version>
+	<description>{{nameUpper}}_XML_DESCRIPTION</description>
+
+	<updateservers><server type="extension" priority="1" name="{{nameUpper}}">{{xmlserver}}/{{name}}-update.xml</server></updateservers>
+
+	<changelogurl>{{xmlserver}}/{{name}}-changelog.xml</changelogurl>
+
+	<infourl>{{infourl}}?file={{name}}</infourl>
+
+	<scriptfile>installerScript.php</scriptfile>
+	<minimumPhp>{{minimumPhp}}</minimumPhp>
+	<maximumPhp>{{maximumPhp}}</maximumPhp>
+	<minimumJoomla>{{minimumJoomla}}</minimumJoomla>
+	<maximumJoomla>{{maximumJoomla}}</maximumJoomla>
+	<allowDowngrades>{{allowDowngrades}}</allowDowngrades>
+
+	<files>
+		<!-- <filename module="{{name}}">{{name}}.php</filename> -->
+		<folder module="{{name}}">services</folder>
+		<filename>installerScript.php</filename>
+		<filename>LICENSE.txt</filename>
+		<folder>language</folder>
+		<folder>src</folder>
+		<folder>tmpl</folder>
+	</files>
+	{{namespace}}
+	<config>
+		<fields name="params">
+
+			<fieldset name="basic">
+
+				<field name="iconClassSpacer" type="note" close="true"
+					class="alert alert-info"
+					label="MOD_BOXESGHSVS_ICONCLASS"
+					description="MOD_BOXESGHSVS_ICONCLASS_DESC"/>
+
+				<field name="image" type="media"
+					label="MOD_BOXESGHSVS_IMAGE"/>
+
+				<field name="text" type="editor"
+					label="MOD_BOXESGHSVS_TEXT"/>
+
+				<field
+					name="linkMenu"
+					type="menuitem"
+					label="JGLOBAL_MENU_SELECTION"
+					disable="separator,alias,heading,url"
+					onchange="this.form.submit();"
+				>
+					<option	value="">COM_MODULES_OPTION_SELECT_MENU_ITEM</option>
+					<option	value="-1">COM_MODULES_NONE</option>
+				</field>
+
+				<field
+					name="linkArticle"
+					type="modal_article"
+					label="PLG_CONTENT_CONFIRMCONSENT_FIELD_ARTICLE_LABEL"
+					description="PLG_CONTENT_CONFIRMCONSENT_FIELD_ARTICLE_DESC"
+					select="true"
+					new="true"
+					edit="true"
+					clear="true"
+					filter="integer"
+					showon="privacy_type:article"
+				/>
+
+				<field name="linkexternal" type="url"
+					label="COM_BANNERS_FIELD_CLICKURL_LABEL"
+					filter="url"
+					validate="url"/>
+
+			</fieldset>
+
+			<fieldset name="advanced">
+				<field
+					name="layout"
+					type="modulelayout"
+					label="JFIELD_ALT_LAYOUT_LABEL"
+					class="form-select"
+					validate="moduleLayout"
+				/>
+
+				<field
+					name="moduleclass_sfx"
+					type="textarea"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					rows="3"
+					validate="CssIdentifier"
+				/>
+
+				<field
+					name="cache"
+					type="list"
+					label="COM_MODULES_FIELD_CACHING_LABEL"
+					default="1"
+					filter="integer"
+					validate="options"
+					>
+					<option value="1">JGLOBAL_USE_GLOBAL</option>
+					<option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+
+				<field
+					name="cache_time"
+					type="number"
+					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+					default="900"
+					filter="integer"
+				/>
+
+				<field
+					name="cachemode"
+					type="hidden"
+					default="static"
+					>
+					<option value="static"></option>
+				</field>
+
+			</fieldset>
+		</fields>
+	</config>
+</extension>
