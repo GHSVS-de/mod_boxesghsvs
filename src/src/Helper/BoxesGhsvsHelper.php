@@ -64,12 +64,12 @@ class BoxesGhsvsHelper
 			$link = Route::_(RouteHelper::getArticleRoute($id, $article->catid));
 			$linkType = 'linkArticle';
 		}
-		elseif ($link = trim($params->get('linkYoutube', ''))) {
-			$linkType = 'linkYoutube';
-			$target = ' target=_blank';
-		}
 		elseif ($link = trim($params->get('linkExternal', ''))) {
 			$linkType = 'linkExternal';
+			$target = ' target=_blank';
+		}
+		elseif ($link = trim($params->get('linkYoutube', ''))) {
+			$linkType = 'linkYoutube';
 			$target = ' target=_blank';
 		}
 
