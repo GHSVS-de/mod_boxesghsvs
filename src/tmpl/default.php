@@ -10,17 +10,42 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Language\Text;
+
+$modId = 'mod_boxesghsvs' . $module->id;
+
 /*
 Available variables from helper:
 - String $link
-- String $iconClass
-- String $labelling
-- String $titleAttr
+- String $linktype
+- String $linktarget
+- String $linktext
+- String $text
+- String $image
+- String $title
 */
 ?>
-<div class="mod_boxesghsvs">
-	<a href="<?php echo $link; ?>" class="btn btn-primary btn-md" target="_blank"
-		<?php	echo $titleAttr ? 'title="' . $titleAttr . '"': '';?>>
-			<?php echo $labelling; ?>
-	</a>
+<div id="<?php echo $modId; ?>" class="mod_boxesghsvs singleBox g-0 col <?php echo $linktype; ?>">
+	<div class="card h-100">
+		<div class="card-body">
+			<h3 class="card-title h4"><?php echo $title; ?></h3>
+			<?php if ($image) { ?>
+				<img src="<?php echo $image; ?>" class="card-img-top" alt="">
+			<?php } elseif ($linktype === 'linkYoutube') { ?>
+				<iframe src="<?php echo $link; ?>" width="228" height="150"
+					id="masemannVideo" allowfullscreen="allowfullscreen"
+					allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+					frameborder="0"></iframe>
+			<?php } ?>
+			<div class="card-text">
+				<?php echo $text; ?>
+			</div>
+			<?php if ($link) { ?>
+				<a href="<?php echo $link; ?>" class="btn btn-outline-danger"<?php echo $target; ?>>
+					<?php echo $linktext; ?>
+					<span class="icon-arrow-right"></span>
+				</a>
+			<?php } ?>
+		</div>
+	</div>
 </div>

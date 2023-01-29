@@ -32,8 +32,8 @@ class Dispatcher extends AbstractModuleDispatcher implements HelperFactoryAwareI
 		*/
 		$data = parent::getLayoutData();
 		$params = $data['params'];
-		$displayData = $this->getHelperFactory()->getHelper(
-			'BoxesGhsvsHelper', $data)->getDisplayData($data['params'], $data['app']);
+		$displayData = $this->getHelperFactory()->getHelper('BoxesGhsvsHelper', $data)
+			->getDisplayData($data['params'], $data['module'], $data['app']);
 
 		return array_merge($data, $displayData);
 	}

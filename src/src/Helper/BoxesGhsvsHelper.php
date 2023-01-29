@@ -16,72 +16,90 @@ namespace GHSVS\Module\BoxesGhsvs\Site\Helper;
 
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
+use Joomla\Component\Content\Site\Helper\RouteHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\Registry\Registry;
 
 class BoxesGhsvsHelper
 {
-	public function getDisplayData(Registry $moduleParams): array
+	public function getDisplayData(Registry $moduleParams, Object $module, $app): array
 	{
+		$link = $this->getLink($moduleParams, null, $app);
+
 		return [
-			'link' => $this->getLink($moduleParams),
-			'headline' => $this->getIconClass($moduleParams),
-			'image' => $this->getLabelling ($moduleParams),
-			'text' => $this->getTitleAttr ($moduleParams),
+			'link' => $link[0],
+			'linktype' => $link[1],
+			'linktarget' => $link[2],
+			'linktext' => $this->getLinktext($moduleParams),
+			'title' => $this->getTitle($module),
+			'image' => $this->getImage($moduleParams),
+			'text' => $this->getText($moduleParams),
 		];
 	}
 
-	private function getLink(): string
+	private function getTitle(Object $module): string
 	{
-		return (string) new Uri(Route::_('index.php?'));
+		$title = trim($module->title);
+		return $this->clean($title);
+	}
+
+	private function getLink(Registry $params, $module, $app): array
+	{
+		$linkType = '';
+		$link = '';
+		$target = '';
+
+		if ($id = (int) $params->get('linkMenu', 0))
+		{
+			$link = Route::_('index.php?Itemid=' . $id);
+			$linkType = 'linkMenu';
+		}
+		elseif ($id = (int) $params->get('linkArticle', 0))
+		{
+			$article = $app->bootComponent('com_content')->getMVCFactory()
+				->createModel('Article', 'Site', ['ignore_request' => true]);
+			$article->setState('article.id', (int) $id);
+			$article->setState('params', $app->getParams());
+			$article = $article->getItem();
+			$link = Route::_(RouteHelper::getArticleRoute($id, $article->catid));
+			$linkType = 'linkArticle';
+		}
+		elseif ($link = trim($params->get('linkYoutube', ''))) {
+			$linkType = 'linkYoutube';
+			$target = ' target=_blank';
+		}
+		elseif ($link = trim($params->get('linkExternal', ''))) {
+			$linkType = 'linkExternal';
+			$target = ' target=_blank';
+		}
+
+		return [$link, $linkType, $target];
 	}
 
 	/**
-	 * Get the icon class of the button.
+	 * Get the editor text of the entry.
 	 *
 	 * @param   Registry  $params  The module parameters.
 	 *
-	 * @return  string    The icon class of the button or empty string.
+	 * @return  string    The editor text like entered.
 	 */
-	private function getIconClass(Registry $moduleParams) : string
+	private function getText(Registry $params) : string
 	{
-		$iconClass = trim($moduleParams->get('iconClass', 'icon-home'));
-
-		return $this->clean($iconClass);
+		$text = trim($params->get('text', ''));
+		return $text;
 	}
 
-	/**
-	 * Get the labelling of the button. Also language strings are allowed.
-	 *
-	 * @param   Registry  $params  The module parameters.
-	 *
-	 * @return  string    The translated label of the button or empty string.
-	 */
-	private function getLabelling(Registry $moduleParams) : string
+	private function getLinktext(Registry $params) : string
 	{
-		$labelling = trim($moduleParams->get(
-			'labelling',
-			'MOD_BOXESGHSVS_ADMINISTRATION'
-		));
-
-		return $this->clean($labelling);
+		$linktext = Text::_($params->get('linktext', 'MOD_BOXESGHSVS_MORE'));
+		return $linktext;
 	}
 
-	/**
-	 * Get the text of title attribute of the button link. Also language strings are allowed.
-	 *
-	 * @param   Registry  $params  The module parameters.
-	 *
-	 * @return  string    The translated text of title attribute of the button link or empty string.
-	 */
-	private function getTitleAttr(Registry $moduleParams) : string
+	private function getImage(Registry $params) : string
 	{
-		$titleAttr = trim($moduleParams->get(
-			'titleAttr',
-			'MOD_BOXESGHSVS_NEW_TAB'
-		));
+		$image = trim($params->get('image', ''));
 
-		return $this->clean($titleAttr);
+		return $image;
 	}
 
 	private function clean(String $string) : string

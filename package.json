@@ -18,7 +18,7 @@
 		"title": "Joomla site module mod_boxesghsvs",
 		"requires": [],
 		"uses": [],
-		"language": ["en-GB"]
+		"language": []
 	},
 	"changelog": {
 		"projecturl": "https://github.com/GHSVS-de/mod_boxesghsvs",

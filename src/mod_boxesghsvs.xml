@@ -41,6 +41,7 @@
 					label="MOD_BOXESGHSVS_IMAGE"/>
 
 				<field name="text" type="editor"
+					filter="JComponentHelper::filterText"
 					label="MOD_BOXESGHSVS_TEXT"/>
 
 				<field name="linkSpacer" type="note" close="true"
@@ -49,8 +50,9 @@
 					description="MOD_BOXESGHSVS_LINKSPACER_DESC"/>
 
 				<field name="linkMenu" type="menuitem" default=""
+					disable="separator,alias,heading,url"
 					label="MOD_BOXESGHSVS_LINKMENU">
-					<option	value="">JNONe</option>
+					<option	value="">JNONE</option>
 				</field>
 
 				<field
@@ -60,14 +62,20 @@
 					label="MOD_BOXESGHSVS_LINKARTICLE"
 					select="true"
 					clear="true"
-
-					showon="privacy_type:article"
 				/>
 
-				<field name="linkexternal" type="url"
+				<field name="linkExternal" type="url"
 					label="MOD_BOXESGHSVS_LINKEXTERNAL"
 					filter="url"
 					validate="url"/>
+
+				<field name="linkYoutube" type="url"
+					label="MOD_BOXESGHSVS_LINKYOUTUBE"
+					filter="url"
+					validate="url"/>
+
+				<field name="linktext" type="text" default="" filter="trim"
+					label="MOD_BOXESGHSVS_LINKTEXT"/>
 
 			</fieldset>
 
