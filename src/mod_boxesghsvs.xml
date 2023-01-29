@@ -37,43 +37,35 @@
 
 			<fieldset name="basic">
 
-				<field name="iconClassSpacer" type="note" close="true"
-					class="alert alert-info"
-					label="MOD_BOXESGHSVS_ICONCLASS"
-					description="MOD_BOXESGHSVS_ICONCLASS_DESC"/>
-
 				<field name="image" type="media"
 					label="MOD_BOXESGHSVS_IMAGE"/>
 
 				<field name="text" type="editor"
 					label="MOD_BOXESGHSVS_TEXT"/>
 
-				<field
-					name="linkMenu"
-					type="menuitem"
-					label="JGLOBAL_MENU_SELECTION"
-					disable="separator,alias,heading,url"
-					onchange="this.form.submit();"
-				>
-					<option	value="">COM_MODULES_OPTION_SELECT_MENU_ITEM</option>
-					<option	value="-1">COM_MODULES_NONE</option>
+				<field name="linkSpacer" type="note" close="true"
+					class="alert alert-info"
+					label="MOD_BOXESGHSVS_LINKSPACER"
+					description="MOD_BOXESGHSVS_LINKSPACER_DESC"/>
+
+				<field name="linkMenu" type="menuitem" default=""
+					label="MOD_BOXESGHSVS_LINKMENU">
+					<option	value="">JNONe</option>
 				</field>
 
 				<field
 					name="linkArticle"
-					type="modal_article"
-					label="PLG_CONTENT_CONFIRMCONSENT_FIELD_ARTICLE_LABEL"
-					description="PLG_CONTENT_CONFIRMCONSENT_FIELD_ARTICLE_DESC"
+					type="modal_article" filter="integer"
+					addfieldprefix="Joomla\Component\Content\Administrator\Field"
+					label="MOD_BOXESGHSVS_LINKARTICLE"
 					select="true"
-					new="true"
-					edit="true"
 					clear="true"
-					filter="integer"
+
 					showon="privacy_type:article"
 				/>
 
 				<field name="linkexternal" type="url"
-					label="COM_BANNERS_FIELD_CLICKURL_LABEL"
+					label="MOD_BOXESGHSVS_LINKEXTERNAL"
 					filter="url"
 					validate="url"/>
 
