@@ -3,9 +3,9 @@ const path = require('path');
 
 /* Configure START */
 const pathBuildKram = path.resolve("../buildKramGhsvs");
-const updateXml = `${pathBuildKram}/build/update.xml`;
-const changelogXml = `${pathBuildKram}/build/changelog.xml`;
-const releaseTxt = `${pathBuildKram}/build/release.txt`;
+const updateXml = `${pathBuildKram}/build/update_no-changelog.xml`;
+// const changelogXml = `${pathBuildKram}/build/changelog.xml`;
+const releaseTxt = `${pathBuildKram}/build/release_no-changelog.xml.txt`;
 /* Configure END */
 
 const replaceXml = require(`${pathBuildKram}/build/replaceXml.js`);
@@ -70,7 +70,7 @@ const Manifest = `${__dirname}/package/${manifestFileName}`;
 	replaceXmlOptions.checksum = await helper._getChecksum(zipFilePath);
 
 	// Bei diesen werden zuerst Vorlagen nach dist/ kopiert und dort erst "replaced".
-	for (const file of [updateXml, changelogXml, releaseTxt])
+	for (const file of [updateXml, releaseTxt])
 	{
 		from = file;
 		to = `./dist/${path.win32.basename(file)}`;
