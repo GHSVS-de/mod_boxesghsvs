@@ -81,7 +81,7 @@ const Manifest = `${__dirname}/package/${manifestFileName}`;
 	}
 
 	cleanOuts = [
-		`./package`
+		//`./package`
 	];
 	await helper.cleanOut(cleanOuts).then(
 		answer => console.log(
