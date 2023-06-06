@@ -10,9 +10,7 @@
 
 defined('_JEXEC') or die;
 
-use Joomla\CMS\Language\Text;
-
-$modId = 'mod_boxesghsvs' . $module->id;
+use Joomla\CMS\Uri\Uri;
 
 /*
 Available variables from helper:
@@ -23,29 +21,52 @@ Available variables from helper:
 - String $text
 - String $image
 - String $title
+- String $modId
+- Web Asset Manager WAM $wa
+Others:
+- $app
+- $template
+- $module
+- Registry $params
+- String $template
 */
+
+if ($image && $linktype === 'linkYoutube')
+{
+	$bgPath = '"' . Uri::root() . $image . '"';
+	$wa->addInlineStyle('#' . $modId . ' .iframeContainer{ background-image:url(' . $bgPath . ')');
+	$image = null;
+}
 ?>
-<div id="<?php echo $modId; ?>" class="mod_boxesghsvs singleBox g-0 col <?php echo $linktype; ?>">
+<div id="<?php echo $modId; ?>" class="mod_boxesghsvs singleBox col <?php echo $linktype; ?> mt-3">
 	<div class="card h-100">
+		<div class="card-header d-flex align-items-center justify-content-center h4">
+		<h3 class="h4 cardHeadline"><?php echo $title; ?></h3>
+		</div>
 		<div class="card-body">
-			<h3 class="card-title h4"><?php echo $title; ?></h3>
+
 			<?php if ($image) { ?>
-				<img src="<?php echo $image; ?>" class="card-img-top" alt="">
-			<?php } elseif ($linktype === 'linkYoutube') { ?>
-				<iframe src="<?php echo $link; ?>" width="228" height="150"
+				<img src="<?php echo $image; ?>" class="equalHeight" alt="">
+			<?php } elseif ($linktype === 'linkYoutube') {
+			?>
+				<div class="iframeContainer equalHeight">
+				<iframe class="REMOVE-SRC" src="<?php echo $link; ?>" width="100%" height="100%"
 					id="masemannVideo" allowfullscreen="allowfullscreen"
 					allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 					frameborder="0"></iframe>
+				</div>
 			<?php } ?>
-			<div class="card-text">
+			<div class="card-text equalHeight2  d-flex align-items-center justify-content-center flex-column">
 				<?php echo $text; ?>
 			</div>
+		</div><!--/.card-body-->
+		<div class="card-footer">
 			<?php if ($link) { ?>
-				<a href="<?php echo $link; ?>" class="btn btn-outline-danger"<?php echo $target; ?>>
+				<a href="<?php echo $link; ?>" class="btn btnReadmore"<?php echo $target; ?>>
 					<?php echo $linktext; ?>
-					<span class="icon-arrow-right"></span>
+					<span class="icon-arrow-right" aria-hidden="true"></span>
 				</a>
 			<?php } ?>
-		</div>
+		</div><!--/.card-footer-->
 	</div>
 </div>
