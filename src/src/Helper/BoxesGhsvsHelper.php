@@ -17,7 +17,6 @@ namespace GHSVS\Module\BoxesGhsvs\Site\Helper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 use Joomla\Component\Content\Site\Helper\RouteHelper;
-use Joomla\CMS\Uri\Uri;
 use Joomla\Registry\Registry;
 
 class BoxesGhsvsHelper
@@ -32,8 +31,10 @@ class BoxesGhsvsHelper
 			'linktarget' => $link[2],
 			'linktext' => $this->getLinktext($moduleParams),
 			'title' => $this->getTitle($module),
+			'modId' => $this->getModId($module),
 			'image' => $this->getImage($moduleParams),
 			'text' => $this->getText($moduleParams),
+			'wa' => $this->getWa($app, $module->module),
 		];
 	}
 
@@ -41,6 +42,11 @@ class BoxesGhsvsHelper
 	{
 		$title = trim($module->title);
 		return $this->clean($title);
+	}
+
+	private function getModId(Object $module): string
+	{
+		return $module->module . $module->id;
 	}
 
 	private function getLink(Registry $params, $module, $app): array
@@ -64,12 +70,12 @@ class BoxesGhsvsHelper
 			$link = Route::_(RouteHelper::getArticleRoute($id, $article->catid));
 			$linkType = 'linkArticle';
 		}
-		elseif ($link = trim($params->get('linkExternal', ''))) {
-			$linkType = 'linkExternal';
-			$target = ' target=_blank';
-		}
 		elseif ($link = trim($params->get('linkYoutube', ''))) {
 			$linkType = 'linkYoutube';
+			$target = ' target=_blank';
+		}
+		elseif ($link = trim($params->get('linkExternal', ''))) {
+			$linkType = 'linkExternal';
 			$target = ' target=_blank';
 		}
 
@@ -106,5 +112,13 @@ class BoxesGhsvsHelper
 	{
 		return empty($string) ? '' : htmlspecialchars( Text::_($string), ENT_QUOTES,
 			'UTF-8');
+	}
+
+	private function getWa($app, $moduleName)
+	{
+		$wa = $app->getDocument()->getWebAssetManager();
+		// Searches in media/
+		$wa->getRegistry()->addExtensionRegistryFile($moduleName);
+		return $wa;
 	}
 }
