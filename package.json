@@ -5,6 +5,7 @@
 	"version": "2023.06.05",
 	"versionCompare": "2023.01.28",
 	"update": {
+		"infourl": "https://github.com/GHSVS-de/mod_boxesghsvs{{thisRelease}}",
 		"type": "module",
 		"folder": "",
 		"client": "site",
