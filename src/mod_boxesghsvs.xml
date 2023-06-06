@@ -11,9 +11,7 @@
 
 	<updateservers><server type="extension" priority="1" name="{{nameUpper}}">{{xmlserver}}/{{name}}-update.xml</server></updateservers>
 
-	<changelogurl>{{xmlserver}}/{{name}}-changelog.xml</changelogurl>
-
-	<infourl>{{infourl}}?file={{name}}</infourl>
+	<infourl>{{infourl}}</infourl>
 
 	<scriptfile>installerScript.php</scriptfile>
 	<minimumPhp>{{minimumPhp}}</minimumPhp>
@@ -23,7 +21,6 @@
 	<allowDowngrades>{{allowDowngrades}}</allowDowngrades>
 
 	<files>
-		<!-- <filename module="{{name}}">{{name}}.php</filename> -->
 		<folder module="{{name}}">services</folder>
 		<filename>installerScript.php</filename>
 		<filename>LICENSE.txt</filename>
