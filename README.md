@@ -1,7 +1,9 @@
 # mod_boxesghsvs
-Joomla site module. Backend: Enter title, image, text in separate form fields instead of everything in the editor. More controllable output in the frontend e.g. as cards. **WRITTEN AND STYLED FOR 1 INDIVIDUAL WEBSITE.**
+Believe me! You don't need it. **WRITTEN AND STYLED FOR 1 INDIVIDUAL WEBSITE.**
 
-# My personal build procedure (WSL 1, Debian, Win 10)
+Joomla site module. Backend: Enter title, image, text in separate form fields instead of everything in the editor. More controllable output in the frontend e.g. as cards.
+
+# My personal build procedure (WSL 1 or 2, Debian, Win 10)
 
 - Prepare/adapt `./package.json`.
 - `cd /mnt/z/git-kram/mod_boxesghsvs/`
