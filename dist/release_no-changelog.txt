@@ -1,0 +1,32 @@
+2024.01.03
+
+Joomla site module mod_boxesghsvs 2024.01.03
+
+Joomla site module. Backend: Enter title, image, text in separate form fields instead of everything in the editor. More controllable output in the frontend e.g. as cards. Written and styled for an individual website.
+
+### Download
+[mod_boxesghsvs-2024.01.03.zip](https://github.com/GHSVS-de/mod_boxesghsvs/raw/2024.01.03/dist/mod_boxesghsvs-2024.01.03.zip)
+
+### Joomla-Target-Platform(s)
+4.[3456789]<br>5.&ast;
+
+### For the interested ones
+- Deutsche Beschreibung: 
+- English Description: 
+- [Compare releases 2023.06.05...2024.01.03](https://github.com/GHSVS-de/mod_boxesghsvs/compare/2023.06.05...2024.01.03)
+- minimumJoomla: 4.3.0
+- maximumJoomla: 5.9999.9999
+- minimumPhp: 7.4.0
+- maximumPhp: 
+- Checksum: `<sha256>e6d1f93d2da89c47473aab1122bd5f322cb22ad7c3c3ada4e6c0264eb1318475</sha256>`
+- Readme: https://github.com/GHSVS-de/mod_boxesghsvs#readme
+- Updates XML: https://raw.githubusercontent.com/GHSVS-de/upadateservers/master/mod_boxesghsvs-update.xml
+- Last tests: PHP 8.2<br>Joomla 4.4
+- Language files: 
+- Requires: 
+- Uses: 
+- Contained packages (sub Joomla extensions):
+```
+
+```
+

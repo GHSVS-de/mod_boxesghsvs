@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" client="site" method="upgrade">
+	<name>MOD_BOXESGHSVS</name>
+	<author>G@HService Berlin Neukölln, Volkmar Volli Schlothauer</author>
+	<creationDate>2023-01-28</creationDate>
+	<copyright>(C) 2023, G@HService Berlin Neukölln, Volkmar Volli Schlothauer (ghsvs.de)</copyright>
+	<license>GNU General Public License version 3 or later; see LICENSE.txt.</license>
+	<authorUrl>https://ghsvs.de</authorUrl>
+	<version>2024.01.03</version>
+	<description>MOD_BOXESGHSVS_XML_DESCRIPTION</description>
+
+	<updateservers><server type="extension" priority="1" name="MOD_BOXESGHSVS">https://raw.githubusercontent.com/GHSVS-de/upadateservers/master/mod_boxesghsvs-update.xml</server></updateservers>
+
+	<infourl>https://github.com/GHSVS-de/mod_boxesghsvs/releases/tag/2024.01.03</infourl>
+
+	<scriptfile>installerScript.php</scriptfile>
+	<minimumPhp>7.4.0</minimumPhp>
+	<maximumPhp></maximumPhp>
+	<minimumJoomla>4.3.0</minimumJoomla>
+	<maximumJoomla>5.9999.9999</maximumJoomla>
+	<allowDowngrades>1</allowDowngrades>
+
+	<files>
+		<folder module="mod_boxesghsvs">services</folder>
+		<filename>installerScript.php</filename>
+		<filename>LICENSE.txt</filename>
+		<folder>language</folder>
+		<folder>src</folder>
+		<folder>tmpl</folder>
+	</files>
+	<namespace path="src">GHSVS\Module\BoxesGhsvs</namespace>
+	<config>
+		<fields name="params">
+
+			<fieldset name="basic">
+
+				<field name="image" type="media"
+					label="MOD_BOXESGHSVS_IMAGE"/>
+
+				<field name="text" type="editor"
+					filter="\Joomla\CMS\Component\ComponentHelper::filterText"
+					label="MOD_BOXESGHSVS_TEXT"/>
+
+				<field name="linkSpacer" type="note" close="true"
+					class="alert alert-info"
+					label="MOD_BOXESGHSVS_LINKSPACER"
+					description="MOD_BOXESGHSVS_LINKSPACER_DESC"/>
+
+				<field name="linkMenu" type="menuitem" default=""
+					disable="separator,alias,heading,url"
+					label="MOD_BOXESGHSVS_LINKMENU">
+					<option	value="">JNONE</option>
+				</field>
+
+				<field
+					name="linkArticle"
+					type="modal_article" filter="integer"
+					addfieldprefix="Joomla\Component\Content\Administrator\Field"
+					label="MOD_BOXESGHSVS_LINKARTICLE"
+					select="true"
+					clear="true"
+				/>
+
+				<field name="linkExternal" type="url"
+					label="MOD_BOXESGHSVS_LINKEXTERNAL"
+					filter="url"
+					validate="url"/>
+
+				<field name="linkYoutube" type="url"
+					label="MOD_BOXESGHSVS_LINKYOUTUBE"
+					filter="url"
+					validate="url"/>
+
+				<field name="linktext" type="text" default="" filter="trim"
+					label="MOD_BOXESGHSVS_LINKTEXT"/>
+
+			</fieldset>
+
+			<fieldset name="advanced">
+				<field
+					name="layout"
+					type="modulelayout"
+					label="JFIELD_ALT_LAYOUT_LABEL"
+					class="form-select"
+					validate="moduleLayout"
+				/>
+
+				<field
+					name="moduleclass_sfx"
+					type="textarea"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					rows="3"
+					validate="CssIdentifier"
+				/>
+
+				<field
+					name="cache"
+					type="list"
+					label="COM_MODULES_FIELD_CACHING_LABEL"
+					default="1"
+					filter="integer"
+					validate="options"
+					>
+					<option value="1">JGLOBAL_USE_GLOBAL</option>
+					<option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+
+				<field
+					name="cache_time"
+					type="number"
+					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+					default="900"
+					filter="integer"
+				/>
+
+				<field
+					name="cachemode"
+					type="hidden"
+					default="static"
+					>
+					<option value="static"></option>
+				</field>
+
+			</fieldset>
+		</fields>
+	</config>
+</extension>
