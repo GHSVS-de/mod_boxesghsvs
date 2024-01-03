@@ -24,24 +24,46 @@ class BoxesGhsvsHelper
 	public function getDisplayData(Registry $moduleParams, Object $module, $app): array
 	{
 		$link = $this->getLink($moduleParams, null, $app);
+		$titleParts = $this->getTitle($module);
 
 		return [
 			'link' => $link[0],
 			'linktype' => $link[1],
 			'linktarget' => $link[2],
 			'linktext' => $this->getLinktext($moduleParams),
-			'title' => $this->getTitle($module),
+			'title' => $titleParts[0],
+			'subtitle' => $titleParts[1],
 			'modId' => $this->getModId($module),
 			'image' => $this->getImage($moduleParams),
+			'alt' => $titleParts[0],
 			'text' => $this->getText($moduleParams),
 			'wa' => $this->getWa($app, $module->module),
 		];
 	}
 
-	private function getTitle(Object $module): string
+	private function getTitle(Object $module): array
 	{
-		$title = trim($module->title);
-		return $this->clean($title);
+		$delimiter = '(/)';
+		$titleParts = [];
+
+		if (strpos($module->title, $delimiter) !== false)
+		{
+			$titleParts = explode($delimiter, $module->title, 2);
+		}
+		else
+		{
+			$titleParts[0] = $module->title;
+			$titleParts[1] = '';
+		}
+
+		$titleParts = array_map('trim',  $titleParts);
+
+		foreach ($titleParts as $key => $part)
+		{
+			$titleParts[$key] = $this->clean($part);
+		}
+
+		return $titleParts;
 	}
 
 	private function getModId(Object $module): string
