@@ -38,7 +38,7 @@
 					label="MOD_BOXESGHSVS_IMAGE"/>
 
 				<field name="text" type="editor"
-					filter="JComponentHelper::filterText"
+					filter="\Joomla\CMS\Component\ComponentHelper::filterText"
 					label="MOD_BOXESGHSVS_TEXT"/>
 
 				<field name="linkSpacer" type="note" close="true"
