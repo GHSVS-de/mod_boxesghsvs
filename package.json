@@ -2,8 +2,8 @@
 	"name": "mod_boxesghsvs",
 	"nameReal": "mod_boxesghsvs",
 	"filename": "mod_boxesghsvs",
-	"version": "2023.06.05",
-	"versionCompare": "2023.01.28",
+	"version": "2024.01.03",
+	"versionCompare": "2023.06.05",
 	"update": {
 		"infourl": "https://github.com/GHSVS-de/mod_boxesghsvs{{thisRelease}}",
 		"type": "module",
@@ -11,7 +11,8 @@
 		"client": "site",
 		"tag": "stable",
 		"targetplatform": [
-			"4.[23456789]"
+			"4.[3456789]",
+			"5.*"
 		],
 		"namespace": "GHSVS\\Module\\BoxesGhsvs"
 	},
@@ -28,14 +29,14 @@
 		"docsDE": "",
 		"docsEN": "",
 		"lastTests": [
-			"PHP 8.1",
-			"Joomla 4.3"
+			"PHP 8.2",
+			"Joomla 4.4"
 		]
 	},
 	"minimumPhp": "7.4.0",
-	"maximumPhp": "8.99999.99999",
+	"maximumPhp": "",
 	"minimumJoomla": "4.3.0",
-	"maximumJoomla": "4.9999.9999",
+	"maximumJoomla": "5.9999.9999",
 	"allowDowngrades": "1",
 	"creationDate": "2023-01-28",
 	"licenseLong": "GNU General Public License version 3 or later; see LICENSE.txt.",
